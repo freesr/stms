@@ -1,0 +1,1 @@
+Student Travel Management Systemgit rm -r --cached node_modulesgit 

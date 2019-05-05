@@ -1,0 +1,52 @@
+html
+  head
+    title User Information
+    link(rel='stylesheet', type='text/css', href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css')
+  body
+    .card
+      .card-image
+        figure.image.is-10by1
+          img(src='/views/jpglogo2.jpg', alt='Placeholder image')
+    br
+    br
+    br
+    br
+    center
+      .tile.is-ancestor
+        .tile.is-parent
+          article.tile.is-child.notification.is-success
+            .field.is-mobile
+              label.label.is-large Name:
+              label.label #{doc.name}
+              br
+              label.label.is-large Roll No:
+              label.label #{doc.id}
+              br
+              label.label.is-large Branch:
+              label.label #{doc.branch}
+              br
+              label.label.is-large Bus No:
+              label.label #{doc.busno}
+              br
+              label.label.is-large Stop:
+              label.label #{doc.stop}
+              br
+              label.label.is-large E-mail:
+              label.label #{doc.email}
+              br  
+              a.button.is-small Click Here To Change
+          .tile.is-parent
+            article.tile.is-child.notification.is-danger
+              label.label.is-large Pending Fines:
+              table.table.table-striped
+                tr
+                  th Date
+                  th reason
+                  th amount
+
+
+                each n in doc1
+                  tr
+                    td #{n.date}
+                    td #{n.reason}
+                    td #{n.amount}

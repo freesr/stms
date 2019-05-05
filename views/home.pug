@@ -1,0 +1,28 @@
+html
+  head
+    title Welcome Page
+    link(rel='stylesheet', type='text/css', href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css')
+  body(background='/views/background-blur-clean-531880.jpg')
+    form.is-primary
+      .field
+        .card
+          .card-image
+            figure.image.is-5by1
+              img(src='/views/jpglogo2.jpg', alt='Placeholder image')
+        br
+        br
+        br
+        br
+        nav.level
+          p.level-item.has-text-centered
+            a(href='/login').button.is-large.is-link User login
+            br
+        nav.level
+          p.level-item.has-text-centered
+            a(href='/login').button.is-large.is-warning Administrator
+            br
+        nav.level
+          p.level-item.has-text-centered
+            a(href='/buslist').button.is-large.is-info Search Buses
+            br
+    
