@@ -5,7 +5,6 @@ const path=require('path');
 const app=express();
 const auth=require('./auth');
 mongoose.connect('mongodb://localhost:27017/stms');
-
 app.use("/views", express.static(path.join(__dirname, 'views')));
 auth(app);
 app.set('/views',express.static(path.join(__dirname, '/views')));

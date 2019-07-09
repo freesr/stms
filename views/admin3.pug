@@ -1,0 +1,44 @@
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title 1
+    link(rel='stylesheet', href='bootstrap.min.css')
+    link(rel='stylesheet', href='Article-List.css')
+    link(rel='stylesheet', href='Contact-Form-Clean.css')
+    link(rel='stylesheet', href='Login-Form-Dark.css')
+    link(rel='stylesheet', href='Navigation-with-Button.css')
+    link(rel='stylesheet', href='Projects-Horizontal.css')
+    link(rel='stylesheet', href='Registration-Form-with-Photo.css')
+    link(rel='stylesheet', href='styles.css')
+  body
+    div
+      nav.navbar.navbar-light.navbar-expand-md.navigation-clean-button
+        .container
+          a.navbar-brand(href='#') CVR College of Engineering
+          button.navbar-toggler(data-toggle='collapse', data-target='#navcol-1')
+            span.sr-only Toggle navigation
+            span.navbar-toggler-icon
+          #navcol-1.collapse.navbar-collapse
+            ul.nav.navbar-nav.mr-auto
+            span.navbar-text.actions
+            ul.nav.navbar-nav
+              li.nav-item(role='presentation')
+                a.nav-link.active(href='#') Update Fines
+              li.nav-item(role='presentation')
+                a.nav-link(href='#') Select Bus Routes
+              li.nav-item(role='presentation')
+                a.nav-link(href='#') Log out
+    .register-photo
+      .form-container
+        form(method='post')
+          h2.text-center
+            strong Update Fines
+          .form-group
+            input.form-control(type='email', name='email', placeholder='Roll No')
+          .form-group
+            input.form-control(type='password', name='password', placeholder='Remarks')
+          .form-group
+            input.form-control(type='password', name='password-repeat', placeholder='Fine Levied')
+          .form-group
+            button.btn.btn-primary.btn-block(type='submit') Update

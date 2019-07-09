@@ -6,6 +6,8 @@ const user=require('../models/user');
 var passport = require('passport');
 const Fines=require('../models/fines');
 const Mail=require('./mail');
+const rout=require('../models/routes');
+const Grive=require('../models/greivance');
 
 
 router.route('/')
@@ -25,6 +27,20 @@ router.route('/home')
 
         })
     })
+    router.route('/greve')
+    .post((req,res)=>{
+        const roll=req.body.id;
+        const subject=req.body.subject;
+        const message=req.body.message;
+        const g=new Grev({
+            roll:roll,
+            subject:subject,
+            message:message
+        });
+Grive.saveGrive(g);
+
+
+    });
 
 router.route('/login')
     .get((req, res) => {
@@ -88,21 +104,31 @@ router.route('/login')
   })   
   router.route('/buses') 
   .get((req,res)=>{
-      const b=req.query.bus;
-      res.render(b+'.pug',{});
+      var b=req.query.bus;
+      //console.log(typeof(b));
+      rout.setBus(b)
+      .then((result)=>{
+        console.log(result);
+        res.render('view',{result:result});
+      })
+      .catch(err=>{
+          console.log('hii'+err);
+      })
+     
   })   
   
    router.route('/admin')
    .get((req,res)=>{
-       res.render('home',{})
+       res.render('admin',{})
    })
    .post((req,res)=>{
      //  const flag=req.body.flag;
     //   const modifiedbuses=req.body.modifiedbuses;
-    const flag=true;
-    const modifiedbuses=[25,20];
+   // const flag=true;
+    //const modifiedbuses=[25,50];
+    console.log(req.body);
     let sender=[];
-       if(flag)
+   //    if(flag)
        {
            mailfilter(modifiedbuses);
      
@@ -138,7 +164,7 @@ router.route('/login')
          //  Mail(senders,'bus cancelled','your bus has been cancelled');
 
        }
-       console.log(sender);
+     //  console.log(sender);
 
 
    })
@@ -152,11 +178,27 @@ router.route('/login')
 async function mailfilter(modifybuses){
     try{
         
-        modifybuses.forEach(function(ele){
-           const  l= await user.find({busno:busno})
-            .select('email').exec();
-          //  console.log(l);
-        })
+        // modifybuses.forEach(function(ele){
+        //    const  l= await user.find({busno:busno})
+        //     .select('email').exec();
+        //   //  console.log(l);
+        // })
+        let ll='';
+        for(let busno in modifybuses)
+        {
+            console.log(modifybuses[busno]);
+            const l=await user.find({busno:modifybuses[busno]}).select('email').exec();
+            console.log(l);
+            if(l.length>0)
+            {
+for(let i in l)
+{
+    ll=ll+l[i].email+',';
+}
+            }
+        }
+        console.log(ll);
+        Mail(ll,'bus cancelled','your bus has been cancelled');
         
         
     }
@@ -165,5 +207,13 @@ async function mailfilter(modifybuses){
 
     }
 }
+
+router.route('/admin/grievance')
+.get((req,res)=>{
+    Grive.getgreve()
+    .then(g=>{
+        res.render('',{g:g});
+    })
+})
 
 module.exports = router;

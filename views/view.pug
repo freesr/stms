@@ -16,13 +16,14 @@ html
         .tile
           .tile.is-parent.is-vertical
             article.tile.is-child.notification.is-primary
-              p.title Route No: 1
-              p.subtitle Jeedimetla
+              p.title Route No: #{result.busno}
+              p.subtitle Route #{result.route}
             article.tile.is-child.notification.is-warning
               p.title Driver details
               //p.subtitle Bottom tile
               .content
-                .p Driver Name: Vishnuvardhan Reddy Mobile No. 7032208821
+                .p Driver Name:#{result.drivername}
+                .p Mobile No #{result.phone}
           .tile.is-parent
             article.tile.is-child.notification.is-info
               p.title Detailed Route Map
@@ -31,7 +32,7 @@ html
         .tile.is-parent
           article.tile.is-child.notification.is-danger
             p.title Starting Time
-            p.subtitle 7:05 AM
+            p.subtitle #{result.time}
             .content
               // Content
       .tile.is-parent

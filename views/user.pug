@@ -2,6 +2,15 @@ html
   head
     title User Information
     link(rel='stylesheet', type='text/css', href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css')
+    script(type="text/javascript").
+      
+        function myFunction() {
+          var person = prompt("enter new bus no");
+          if (person != null) {
+            document.getElementById("busno").innerHTML =person;
+           
+          }
+
   body
     .card
       .card-image
@@ -26,7 +35,7 @@ html
               label.label #{doc.branch}
               br
               label.label.is-large Bus No:
-              label.label #{doc.busno}
+              label.label(for='busno') #{doc.busno}
               br
               label.label.is-large Stop:
               label.label #{doc.stop}
@@ -34,7 +43,7 @@ html
               label.label.is-large E-mail:
               label.label #{doc.email}
               br  
-              a.button.is-small Click Here To Change
+              a(onclick="myFunction()").button.is-small Click Here To Change
           .tile.is-parent
             article.tile.is-child.notification.is-danger
               label.label.is-large Pending Fines:
